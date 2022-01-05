@@ -4,12 +4,12 @@ from __future__ import print_function
 
 import lxml.etree as ET
 import argparse
-import pkg_resources
+from importlib import resources
 
 
 def convert(inxml):
     dom = ET.parse(inxml)
-    xslt = ET.parse(pkg_resources.resource_stream('cobertura_clover_transform',
+    xslt = ET.parse(resources.open_text('cobertura_clover_transform',
                                                   'transform.xslt'))
 
     transform = ET.XSLT(xslt)
